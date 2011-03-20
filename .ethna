@@ -1,0 +1,4 @@
+[project]
+ethna_version = "2.6.0-beta2"
+controller_file = "app/Pastit_Controller.php"
+controller_class = "Pastit_Controller"
