@@ -96,7 +96,7 @@ class Pastit_Controller extends Ethna_Controller
         'app'           => 'app',
         'plugin'        => 'app/plugin',
         'bin'           => 'bin',
-        'etc'           => 'etc',
+        'etc'           => 'config',
         'filter'        => 'app/filter',
         'locale'        => 'locale',
         'log'           => 'log',
