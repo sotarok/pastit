@@ -14,4 +14,4 @@ GTAGS
 .DS_Store
 *.sw[po]
 tags
-etc/*.php
+config/*.php
