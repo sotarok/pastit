@@ -1,4 +1,4 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -6,8 +6,18 @@
 <title>Pastit</title>
 </head>
 <body>
+
 <div id="header">
-    <h1>Pastit - Paste It!</h1>
+  <ul id="navigation">
+    <li><a href=""><img src="{{$config.url}}images/header_logo.png" alt="Top" /></a></li>
+    <li><a href="">New Paste</a></li>
+    <li><a href="">Login</a></li>
+    <!--
+    <li><a href="">Timeline</a></li>
+    <li><a href="">My Pastes</a></li>
+    <li><a href="">Setting</a></li>
+    -->
+  </ul>
 </div>
 
 <div id="main">

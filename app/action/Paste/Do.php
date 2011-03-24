@@ -21,6 +21,12 @@ class Pastit_Form_PasteDo extends Pastit_ActionForm
      *  @var    array   form definition.
      */
     protected $form = array(
+        'title' => array(
+            'name' => 'タイトル',
+            'type' => VAR_TYPE_STRING,
+            'form_type' => FORM_TYPE_TEXT,
+            'required' => false,
+        ),
         'content' => array(
             'name' => '内容',
             'type' => VAR_TYPE_STRING,
@@ -32,8 +38,10 @@ class Pastit_Form_PasteDo extends Pastit_ActionForm
             'type' => VAR_TYPE_STRING,
             'form_type' => FORM_TYPE_SELECT,
             'option' => array(
-                1 => 'TEXT',
+                1 => 'text',
                 2 => 'PHP',
+                0 => '-------------',
+                3 => 'diff',
             ),
             'required' => true,
         ),
@@ -64,6 +72,8 @@ class Pastit_Form_PasteDo extends Pastit_ActionForm
  */
 class Pastit_Action_PasteDo extends Pastit_ActionClass
 {
+    protected $login_required = true;
+
     /**
      *  preprocess of paste_do Action.
      *
@@ -77,7 +87,6 @@ class Pastit_Action_PasteDo extends Pastit_ActionClass
             // forward to error view (this is sample)
             return 'index';
         }
-        $sample = $this->af->get('sample');
         return null;
     }
 
@@ -89,7 +98,10 @@ class Pastit_Action_PasteDo extends Pastit_ActionClass
      */
     public function perform()
     {
-        return 'paste_do';
+        $pm = $this->backend->getManager('paste');
+        $post_hash = $pm->post($this->af->get('content'), $this->af->get('content_type'));
+
+        return array('redirect', $this->config->get('url') . $post_hash);
     }
 }
 

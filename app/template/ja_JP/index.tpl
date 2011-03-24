@@ -1,6 +1,7 @@
-<h2>Paste It!</h2>
+<h1>New Paste</h1>
 
-{{form ethna_action="paste_do" name="paste"}}
+<div id="new-paste">
+{{form ethna_action="paste_do" name="paste" id="paste-form"}}
 
 {{if count($errors)}}
 <div class="errors">
@@ -12,10 +13,16 @@
 </div>
 {{/if}}
 
-{{form_input name="content"}}<br />
+{{form_input name="title"}} (* option)
 {{form_input name="content_type"}}<br />
-{{form_submit name="paste_do" value="貼りつけ"}}<br />
+{{form_input name="content"}}<br />
+{{form_submit name="paste_do" value="Paste!"}}<br />
 {{/form}}
 
+<br class="clear" />
+</div>
+
+<!--
 <h2>Latest Pasted</h2>
+-->
 
