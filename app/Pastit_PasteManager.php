@@ -27,11 +27,15 @@ class Pastit_PasteManager extends Ethna_AppManager
         $this->user = $backend->getManager('user');
     }
 
-    public function post($content, $content_type, $title = "")
+    public function post($content, $content_type, $title = "", $token = false)
     {
-        // not login
-        if (Ethna::isError($user_id = $this->user->id())) {
-            $user_id = 0;
+        $user_id = 0;
+        if ($token){
+            $user = $this->user->getUserByToken($token);
+            $user_id = $user['id'];
+        }
+        elseif ($user = $this->session->get('user')) {
+            $user_id = $user['id'];
         }
         $session_id = session_id();
 
@@ -66,12 +70,30 @@ class Pastit_PasteManager extends Ethna_AppManager
 
     public function getSyntaxHighlightedContent($content, $type)
     {
+        if ($type == '__pastit_type_none__') {
+            $type = 'none';
+
+            // auto detect
+            $first_line = explode(PHP_EOL, $content);
+            $first_line = $first_line[0];
+            if (preg_match('@#!.+bin/(\w+)@', $first_line, $m)) {
+                $type = $m[1];
+            }
+
+            if (preg_match('@#!.+bin/env\s+(\w+)@', $first_line, $m)) {
+                $type = $m[1];
+            }
+
+            if (preg_match('@\+\+\+@', $content) && preg_match('@\-\-\-@', $content)) {
+                $type = 'diff';
+            }
+        }
         require_once 'geshi/geshi.php';
         $geshi = new GeSHi($content, $type);
         $geshi->set_overall_style('font-family: menlo, monaco, \'courier new\', mono-space;');
         $content =  $geshi->parse_code();
         //return '<pre class=" superpre">' . PHP_EOL . $body . '</pre>';
-        return $content;
+        return array($content, $type);;
     }
 }
 

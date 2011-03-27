@@ -73,6 +73,18 @@ class Pastit_UserManager extends Ethna_AppManager
         return $ret;
     }
 
+    public function getUserByToken($token)
+    {
+        $ret = $this->db->getRow(
+            sprintf('SELECT * FROM %s WHERE token = ?', $this->_table),
+            $token
+        );
+        if (Ethna::isError($ret)) {
+            return array();
+        }
+        return $ret;
+    }
+
     public function getUser($id)
     {
         $ret = $this->db->getRow(

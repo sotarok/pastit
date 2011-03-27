@@ -1,7 +1,7 @@
 <h1>New Paste</h1>
 
 <div id="new-paste">
-{{form ethna_action="paste_do" name="paste" id="paste-form"}}
+{{form ethna_action="paste_do" name="paste" id="paste-form" action=$config.url|cat:"paste_do"}}
 
 {{include file="errors.tpl"}}
 

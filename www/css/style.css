@@ -144,13 +144,13 @@ pre {
   padding: 10px 5px;
 }
 
-
 .paste_view {
 }
 .paste_view pre {
   background: #eae8e1;
   border: solid 1px #ccc;
   padding: 10px;
+  overflow: auto;
 }
 .paste_view p {
 }

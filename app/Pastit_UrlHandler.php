@@ -33,6 +33,10 @@ class Pastit_UrlHandler extends Ethna_UrlHandler
                     array('nickname' => array(),),
                 ),
             ),
+            'download' => array(
+                'path'          => 'pastit',
+                'path_ext'      => array(),
+            ),
             'setting' => array(
                 'path'          => 'setting',
                 'path_ext'      => array(),
@@ -47,6 +51,10 @@ class Pastit_UrlHandler extends Ethna_UrlHandler
             ),
             'login_do' => array(
                 'path'          => 'login_do',
+                'path_ext'      => array(),
+            ),
+            'paste_do' => array(
+                'path'          => 'paste_do',
                 'path_ext'      => array(),
             ),
             'login_finish' => array(

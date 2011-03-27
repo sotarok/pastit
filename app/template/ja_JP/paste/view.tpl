@@ -1,10 +1,19 @@
-<h1>{{$app.paste.title|default:"#"|cat:$app.paste.id}}</h1>
+<h1>{{if !empty($app.paste.title)}}
+{{$app.paste.title}}
+{{else}}
+#{{$app.paste.id}}
+{{/if}}
+</h1>
 
 <div class="paste_view">
 <div class="paste_side">
-<p>user: {{if $app.user}}{{$app.user.nickname}}{{else}}-{{/if}}</p>
-<p>created: {{$app.paste.created}}</p>
-<p>embed: <input type="text" readonly value="{{$app.embed_code}}"></p>
+{{if $app.paste.user_id == $session.user.id}}
+<p><a href="{{$config.url}}edit?id={{$app.paste.id}}">&gt; Edit</a></p>
+{{/if}}
+<p>Type: {{$app.paste.content_type}}</p>
+<p>User: {{if $app.user}}{{$app.user.nickname}}{{else}}-{{/if}}</p>
+<p>Created: {{$app.paste.created}}</p>
+<p>Embed: <input type="text" readonly value="{{$app.embed_code}}"></p>
 </div>
 <div class="paste_content">
 {{$app_ne.content}}

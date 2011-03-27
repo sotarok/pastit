@@ -40,6 +40,10 @@ class Pastit_Form_PasteDo extends Pastit_ActionForm
             //'option' => array(),
             'required' => true,
         ),
+        'token' => array(
+            'type' => VAR_TYPE_STRING,
+            'required' => false,
+        ),
     );
 
     public function setFormDef_ViewHelper()
@@ -86,6 +90,11 @@ class Pastit_Action_PasteDo extends Pastit_ActionClass
     {
         if ($this->af->validate() > 0) {
             // forward to error view (this is sample)
+            if ($this->af->get('token')) {
+                echo "error (form validation)", PHP_EOL;
+                var_dump($this->ae->getMessageList());
+                return false;
+            }
             return 'index';
         }
         return null;
@@ -100,16 +109,30 @@ class Pastit_Action_PasteDo extends Pastit_ActionClass
     public function perform()
     {
         $pm = $this->backend->getManager('paste');
-        $post_hash = $pm->post(
+
+
+        $post_id = $pm->post(
             $this->af->get('content'),
             $this->af->get('content_type'),
-            $this->af->get('title')
+            $this->af->get('title'),
+            $this->af->get('token')
         );
-        if (Ethna::isError($post_hash)) {
+
+        if (Ethna::isError($post_id)) {
+            if ($this->af->get('token')) {
+                echo "error";
+                return false;
+            }
             return 'error500';
         }
 
-        return array('redirect', $this->config->get('url') . $post_hash);
+        if ($this->af->get('token')) {
+            echo $this->config->get('url') . $post_id;
+            return false;
+        }
+                exit;
+
+        return array('redirect', $this->config->get('url') . $post_id);
     }
 }
 
