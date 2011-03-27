@@ -77,6 +77,7 @@ $context  = stream_context_create($context_option);
 $result = file_get_contents('___url___paste_do', false, $context);
 
 echo "Posted: " . $result;
+echo PHP_EOL;
 
 function usage()
 {
