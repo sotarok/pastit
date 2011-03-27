@@ -31,6 +31,7 @@ class Pastit_View_PasteView extends Pastit_ViewClass
         $paste = $pm->getPaste($this->af->get('id'));
 
         $this->af->setApp('paste', $paste);
+        $this->af->setApp('embed_code', sprintf('<iframe src="%sembed/%s"></iframe>', $this->config->get('url'), $paste['id']));
         $this->af->setApp('user', $um->getUser($paste['user_id']));
         $this->af->setAppNe(
             'content',

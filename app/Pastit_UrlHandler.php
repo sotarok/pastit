@@ -22,14 +22,24 @@ class Pastit_UrlHandler extends Ethna_UrlHandler
          * @see http://ethna.jp/ethna-document-dev_guide-urlhandler.html
          */
         'index'  => array(                      // UrlHandler's namespace seted in the entry point
-            'user_login' => array(              // key as a action name
-                'path'          => 'login',     // url path
-                'path_regexp'   => false,       // url path setted by regexp
-                'path_ext'      => false,       // parameter/ActionForm map
-                'option'        => array(),     // option
+            'user' => array(              // key as a action name
+                'path'          => 'user',     // url path
+                'path_regexp'   => array(
+                    '|^user/(\d+)$|',
+                    '|^user/(\w+)$|',
+                ),
+                'path_ext'      => array(
+                    array('id' => array(),),
+                    array('nickname' => array(),),
+                ),
             ),
             'paste_view' => array(
-                'path'          => false,
+                'path'          => 'paste_view',
+                'path_regexp'   => '|^(\d+)$|',
+                'path_ext'      => array('id' => array(),),
+            ),
+            'index' => array(
+                'path'          => '',
                 'path_regexp'   => '|^(\d+)$|',
                 'path_ext'      => array('id' => array(),),
             ),

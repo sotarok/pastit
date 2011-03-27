@@ -37,30 +37,31 @@ class Pastit_Form_PasteDo extends Pastit_ActionForm
             'name' => 'コンテンツタイプ',
             'type' => VAR_TYPE_STRING,
             'form_type' => FORM_TYPE_SELECT,
-            'option' => array(
-                1 => 'Text',
-                2 => 'PHP',
-                0 => '-------------',
-                3 => 'diff',
-            ),
+            //'option' => array(),
             'required' => true,
         ),
     );
 
-    /**
-     *  Form input value convert filter : sample
-     *
-     *  @access protected
-     *  @param  mixed   $value  Form Input Value
-     *  @return mixed           Converted result.
-     */
-    /*
-    protected function _filter_sample($value)
+    public function setFormDef_ViewHelper()
     {
-        //  convert to upper case.
-        return strtoupper($value);
+        require_once 'geshi/geshi.php';
+        $geshi = new GeSHi();
+        $supported = $geshi->get_supported_languages();
+        $option = array();
+        foreach ($supported as $sl) {
+            $option[$sl] = ucfirst($sl);
+        }
+        $sl = asort($option);
+        $ct = $this->getDef('content_type');
+        $ct['option'] = array(
+            // frequent used languages
+            'text' => 'Text',
+            'php' => 'PHP',
+            'diff' => 'Diff',
+            '-' => '------',
+        ) + $option;
+        $this->setDef('content_type', $ct);
     }
-    */
 }
 
 /**

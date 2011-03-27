@@ -63,7 +63,7 @@ class Pastit_Action_PasteView extends Pastit_ActionClass
     {
         if ($this->af->validate() > 0) {
             // forward to error view (this is sample)
-            return array('redirect', 'index');
+            return 'index';
         }
     }
 

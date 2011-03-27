@@ -6,6 +6,7 @@
 
 body
 {
+  background: #f0f0f0;
   margin: 0;
   padding: 0;
   font-family: Verdana, "ヒラギノ角ゴ Pro W3", "メイリオ";
@@ -112,4 +113,46 @@ a:active { text-decoration: none; }
 .login-notice {
   text-align: right;
   color: #f00;
+}
+
+
+#global_login {
+}
+
+#global_login input {
+  width: 200px;
+}
+#global_login input[type="submit"] {
+  width: auto;
+}
+
+
+.paste_view {
+}
+.paste_view pre {
+  background: #eae8e1;
+  border: solid 1px #ccc;
+  padding: 10px;
+}
+.paste_view p {
+}
+.paste_view .paste_content {
+  margin-right: 320px;
+}
+.paste_view .paste_side {
+  float: right;
+  width: 300px;
+}
+.paste_view .paste_side p {
+  margin-top: 0;
+}
+
+#footer {
+  background: #fff;
+  background: -moz-linear-gradient(top, #fff, #fff, #f0f0f0);
+  min-height: 200px;
+  padding: 10px;
+}
+#footer p {
+  text-align: right;
 }
