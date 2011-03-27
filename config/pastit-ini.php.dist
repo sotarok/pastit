@@ -5,16 +5,19 @@
  * update:
  */
 $config = array(
-    // site
+    // your url here
     'url' => '%url%',
 
     // debug
     // (to enable ethna_info and ethna_unittest, turn this true)
-    'debug' => %debug%,
+    'debug' => false,
 
     // db
-    // sample-1: single db
-    'dsn' => '%dsn%',
+    // you dsn here
+    'dsn' => 'mysql://root@localhost/pastit',
+
+    'app' => include __DIR__ . '/pastit-app-ini.php',
+    'token_seed' => 'php sucks',
 
     // sample-2: single db w/ multiple users
     // 'dsn'   => 'mysql://rw_user:password@server/database', // read-write
@@ -37,8 +40,9 @@ $config = array(
 
     // sample-2: mulitple facility
     'log' => array(
-        'debugtoolbar'  => array(
-            'level'         => 'warning',
+        'file'  => array(
+            'level'         => 'error',
+            'mode'          => 0666,
         ),
     ),
     //'log' => array(
@@ -89,7 +93,7 @@ $config = array(
     ),
 
     // csrf
-    // 'csrf' => 'Session',
+    'csrf' => 'Session',
 );
 
 $config['plugin'] = array(
