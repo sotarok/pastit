@@ -1,6 +1,6 @@
 <?php
 /**
- *  Login/Do.php
+ *  Paste/View.php
  *
  *  @author     {$author}
  *  @package    Pastit
@@ -8,23 +8,22 @@
  */
 
 /**
- *  login_do Form implementation.
+ *  paste_view Form implementation.
  *
  *  @author     {$author}
  *  @access     public
  *  @package    Pastit
  */
-class Pastit_Form_LoginDo extends Pastit_ActionForm
+class Pastit_Form_PasteView extends Pastit_ActionForm
 {
     /**
      *  @access protected
      *  @var    array   form definition.
      */
     protected $form = array(
-        'url' => array(
-            'type' => VAR_TYPE_STRING,
-            'form_type' => FORM_TYPE_TEXT,
-            'name' => 'OpenID URL',
+        'id' => array(
+            'type' => VAR_TYPE_INT,
+            'required' => true,
         ),
     );
 
@@ -45,16 +44,16 @@ class Pastit_Form_LoginDo extends Pastit_ActionForm
 }
 
 /**
- *  login_do action implementation.
+ *  paste_view action implementation.
  *
  *  @author     {$author}
  *  @access     public
  *  @package    Pastit
  */
-class Pastit_Action_LoginDo extends Pastit_ActionClass
+class Pastit_Action_PasteView extends Pastit_ActionClass
 {
     /**
-     *  preprocess of login_do Action.
+     *  preprocess of paste_view Action.
      *
      *  @access public
      *  @return string    forward name(null: success.
@@ -62,25 +61,21 @@ class Pastit_Action_LoginDo extends Pastit_ActionClass
      */
     public function prepare()
     {
-        /**
         if ($this->af->validate() > 0) {
             // forward to error view (this is sample)
-            return 'error';
+            return array('redirect', 'index');
         }
-        $sample = $this->af->get('sample');
-        */
-        return null;
     }
 
     /**
-     *  login_do action implementation.
+     *  paste_view action implementation.
      *
      *  @access public
      *  @return string  forward name.
      */
     public function perform()
     {
-        return 'login_do';
+        return 'paste_view';
     }
 }
 

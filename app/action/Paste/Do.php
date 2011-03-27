@@ -38,7 +38,7 @@ class Pastit_Form_PasteDo extends Pastit_ActionForm
             'type' => VAR_TYPE_STRING,
             'form_type' => FORM_TYPE_SELECT,
             'option' => array(
-                1 => 'text',
+                1 => 'Text',
                 2 => 'PHP',
                 0 => '-------------',
                 3 => 'diff',
@@ -72,7 +72,7 @@ class Pastit_Form_PasteDo extends Pastit_ActionForm
  */
 class Pastit_Action_PasteDo extends Pastit_ActionClass
 {
-    protected $login_required = true;
+    //protected $login_required = false;
 
     /**
      *  preprocess of paste_do Action.
@@ -99,7 +99,14 @@ class Pastit_Action_PasteDo extends Pastit_ActionClass
     public function perform()
     {
         $pm = $this->backend->getManager('paste');
-        $post_hash = $pm->post($this->af->get('content'), $this->af->get('content_type'));
+        $post_hash = $pm->post(
+            $this->af->get('content'),
+            $this->af->get('content_type'),
+            $this->af->get('title')
+        );
+        if (Ethna::isError($post_hash)) {
+            return 'error500';
+        }
 
         return array('redirect', $this->config->get('url') . $post_hash);
     }

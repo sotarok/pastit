@@ -85,13 +85,11 @@ a:active { text-decoration: none; }
 }
 
 #paste-form input[type="submit"] {
-  display: block;
   margin-top: 10px;
   height: 30px;
   width: 120px;
   font-size: 16px;
   /* margin: 0 auto; */
-  float: right;
   background: -moz-linear-gradient(top, #e17b34, #e45e32);
   border: solid 2px #ea5506;
   border-radius: 10px;
@@ -101,4 +99,17 @@ a:active { text-decoration: none; }
  */
 .clear {
   clear: both;
+}
+.aright {
+  text-align: right;
+}
+
+.form-caption {
+  font-size: 0.8em;
+  color: #666;
+}
+
+.login-notice {
+  text-align: right;
+  color: #f00;
 }

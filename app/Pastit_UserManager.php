@@ -16,10 +16,39 @@
  */
 class Pastit_UserManager extends Ethna_AppManager
 {
+    private $_table = 'pastit_user';
+
+    public function __construct($backend)
+    {
+        parent::__construct($backend);
+    }
+
+    public function getUserByIdentify($uri)
+    {
+        $ret = $this->db->getRow(
+            sprintf('SELECT * FROM %s WHERE identity = ?', $this->_table),
+            $uri
+        );
+        if (Ethna::isError($ret)) {
+            return array();
+        }
+        return $ret;
+    }
+
+    public function getUser($id)
+    {
+        $ret = $this->db->getRow(
+            sprintf('SELECT * FROM %s WHERE id = ?', $this->_table),
+            $id
+        );
+        if (Ethna::isError($ret)) {
+            return array();
+        }
+        return $ret;
+    }
 
     public function id()
     {
-        // session
         return 1;
     }
 }

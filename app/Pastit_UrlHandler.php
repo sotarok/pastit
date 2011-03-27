@@ -21,7 +21,6 @@ class Pastit_UrlHandler extends Ethna_UrlHandler
         /**
          * @see http://ethna.jp/ethna-document-dev_guide-urlhandler.html
          */
-        /*
         'index'  => array(                      // UrlHandler's namespace seted in the entry point
             'user_login' => array(              // key as a action name
                 'path'          => 'login',     // url path
@@ -29,8 +28,12 @@ class Pastit_UrlHandler extends Ethna_UrlHandler
                 'path_ext'      => false,       // parameter/ActionForm map
                 'option'        => array(),     // option
             ),
+            'paste_view' => array(
+                'path'          => false,
+                'path_regexp'   => '|^(\d+)$|',
+                'path_ext'      => array('id' => array(),),
+            ),
         ),
-         */
     );
 
     /**

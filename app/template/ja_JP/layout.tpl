@@ -9,13 +9,16 @@
 
 <div id="header">
   <ul id="navigation">
-    <li><a href=""><img src="{{$config.url}}images/header_logo.png" alt="Top" /></a></li>
+    <li><a href="{{$config.url}}"><img src="{{$config.url}}images/header_logo.png" alt="Top" /></a></li>
     <li><a href="">New Paste</a></li>
-    <li><a href="">Login</a></li>
+    {{if !$app.is_login}}
+    <li>{{form name="global_login" ethna_action="login_do"}}{{form_input name="url"}}{{form_submit value="Login"}}{{/form}}</li>
+    {{else}}
+    <li><a href="{{$config.url}}timeline">Timeline</a></li>
+    <li><a href="{{$config.url}}my">My Pastes</a></li>
+    <li><a href="{{$config.url}}setting">Setting</a></li>
+    {{/if}}
     <!--
-    <li><a href="">Timeline</a></li>
-    <li><a href="">My Pastes</a></li>
-    <li><a href="">Setting</a></li>
     -->
   </ul>
 </div>
@@ -25,7 +28,12 @@
 </div>
 
 <div id="footer">
-    Powered By <a href="http://strk.jp/">Sotarok</a> and <a href="http://ethna.jp">Ethna</a>-{{$smarty.const.ETHNA_VERSION}}.
+  <p>
+    Powered By <a href="http://strk.jp/">Sotarok</a> and <a href="http://ethna.jp">Ethna</a>.
+  </p>
+  <p>
+    Pastit is an opensource software. <a href="http://github.com/sotarok/pastit/">github.com/sotarok/pastit</a>.
+  </p>
 </div>
 </body>
 </html>
