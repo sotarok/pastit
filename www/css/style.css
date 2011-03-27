@@ -1,0 +1,180 @@
+@charset 'utf-8';
+
+/**
+ *  日本語 にほんご
+ */
+
+body
+{
+  background: #f0f0f0;
+  margin: 0;
+  padding: 0;
+  font-family: Verdana, "ヒラギノ角ゴ Pro W3", "メイリオ";
+}
+
+a { color: #006eb0; text-decoration: none; }
+a:hover { text-decoration: none; }
+a:active { text-decoration: none; }
+
+#header a { color: #333631; text-decoration: none; }
+#header a:hover { text-decoration: none; }
+#header a:active { text-decoration: none; }
+
+pre {
+  background: #eae8e1;
+  border: solid 1px #ccc;
+  padding: 10px;
+}
+
+#header
+{
+
+}
+
+#header h1
+{
+  clear: both;
+}
+
+#navigation {
+  font-size: 14px;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  background: #f0f0f0;
+  background: -moz-linear-gradient(top, #cfcfcf, #fcfcfc);
+  height: 35px;
+  border-bottom: solid 1px #ccc;
+}
+
+#navigation li {
+  margin: 0 0 0 0;
+  height: 35px;
+  padding: 0;
+  list-style: none;
+  float: left;
+  border-right: solid 1px #ccc;
+}
+
+#navigation li div,
+#navigation li a {
+  display: block;
+  height: 17px;
+  padding: 9px 10px;
+}
+#navigation li a:hover {
+  background: -moz-linear-gradient(top, #eee, #fcfcfc);
+  color: #393f4c;
+}
+#navigation li:first-child a {
+  height: 35px;
+  padding: 0;
+}
+
+/**
+ */
+#main {
+  padding: 10px;
+}
+#new-paste {
+  border: solid 1px #ccc;
+  background: #e7e7eb;
+  padding: 15px;
+}
+
+#paste-form {
+}
+#paste-form input[name="title"] {
+  font-size: 14px;
+  padding: 2px;
+}
+#paste-form textarea {
+  font-size: 14px;
+  margin-top: 10px;
+  width: 100%;
+  height: 400px;
+  padding: 4px;
+}
+
+#paste-form input[type="submit"] {
+  margin-top: 10px;
+  height: 30px;
+  width: 120px;
+  font-size: 16px;
+  /* margin: 0 auto; */
+  background: -moz-linear-gradient(top, #e17b34, #e45e32);
+  border: solid 2px #ea5506;
+  border-radius: 10px;
+}
+
+/**
+ */
+.clear {
+  clear: both;
+}
+.aright {
+  text-align: right;
+}
+
+.form-caption {
+  font-size: 0.8em;
+  color: #666;
+}
+
+.login-notice {
+  text-align: right;
+  color: #f00;
+}
+
+
+#global_login {
+  float: left;
+  height: 20px;
+  padding: 10px 5px;
+}
+
+#global_login input[type="text"] {
+  width: 200px;
+  background: #fff url(../images/openid/openid.png) 3px 2px no-repeat;
+  border: solid 1px #ccc;
+  padding: 3px 3px 3px 23px;
+}
+#global_login input[type="submit"] {
+  width: auto;
+}
+.global_login_services {
+  float: left;
+  height: 20px;
+  padding: 10px 5px;
+}
+
+.paste_view {
+}
+.paste_view pre {
+  background: #eae8e1;
+  border: solid 1px #ccc;
+  padding: 10px;
+  overflow: auto;
+}
+.paste_view p {
+}
+.paste_view .paste_content {
+  margin-right: 320px;
+}
+.paste_view .paste_side {
+  float: right;
+  width: 300px;
+}
+.paste_view .paste_side p {
+  margin-top: 0;
+}
+
+#footer {
+  background: #fff;
+  background: -moz-linear-gradient(top, #fff, #fff, #f0f0f0);
+  min-height: 200px;
+  padding: 10px;
+}
+#footer p {
+  text-align: right;
+}

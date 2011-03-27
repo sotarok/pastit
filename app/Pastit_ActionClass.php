@@ -18,6 +18,7 @@
  */
 class Pastit_ActionClass extends Ethna_ActionClass
 {
+    protected $login_required = false;
     /**
      *  authenticate before executing action.
      *
@@ -27,7 +28,25 @@ class Pastit_ActionClass extends Ethna_ActionClass
      */
     public function authenticate()
     {
-        return parent::authenticate();
+        if (!$this->session->isStart()) {
+            $this->session->start();
+        }
+        if ($user = $this->session->get('user')) {
+            $this->af->setApp('user', $this->session->get('user'));
+            $this->af->setApp('is_login', true);
+        }
+        else {
+            $this->af->setApp('user', array());
+            $this->af->setApp('is_login', false);
+        }
+
+        if ($this->login_required) {
+            if (!$this->session->get('user')) {
+                return 'login';
+            }
+        }
+
+        return null;
     }
 
     /**

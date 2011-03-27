@@ -1,0 +1,87 @@
+#!/usr/bin/env php
+<?php
+
+if (!ini_get('register_argc_argv')) {
+    echo "please enable register_argc_argv of your php.ini.", PHP_EOL;
+    usage();
+    exit;
+}
+
+$home = getenv('HOME');
+$config_file = $home . DIRECTORY_SEPARATOR . '.pastit';
+if (!file_exists($config_file)) {
+    echo "please setup your $config_file file.", PHP_EOL;
+    echo "see your Pastit site config.", PHP_EOL;
+    exit;
+}
+if (!($conf = parse_ini_file($config_file))) {
+    echo "illegal ini file. please check your $config_file file.", PHP_EOL;
+    exit;
+}
+$token = isset($conf['token'])? $conf['token'] : false;
+if (!$token) {
+    echo "token required. please check your $config_file file.", PHP_EOL;
+    exit;
+}
+
+// specified file
+if ($argc > 1) {
+    $file = array_pop($argv);
+}
+else {
+    $file = "";
+}
+$content = "";
+$type = false;
+$title = "";
+if (file_exists($file)) {
+    $content = file_get_contents($file);
+    $pi = pathinfo($file);
+    $title = $pi['basename'];
+    $type = $pi['extension'];
+}
+else {
+    while ($l = fgets(STDIN)) {
+        $content .= $l;
+    }
+}
+
+if (!$type) {
+    $v = getopt('t:');
+    $type = isset($v['t'])? $v['t'] : "__pastit_type_none__";
+}
+
+if (empty($content)) {
+    echo "empty contents", PHP_EOL;
+    exit;
+}
+
+// post
+$data = http_build_query(
+    array(
+        'content' => $content,
+        'content_type' => $type,
+        'title' => $title,
+        'token' => $token,
+    )
+);
+$context_option = array(
+    'http' => array(
+        'method'  => 'POST',
+        'header'  => 'Content-type: application/x-www-form-urlencoded',
+        'content' => $data
+    )
+);
+
+$context  = stream_context_create($context_option);
+$result = file_get_contents('___url___paste_do', false, $context);
+
+echo "Posted: " . $result;
+echo PHP_EOL;
+
+function usage()
+{
+    echo <<<HOGE
+Usage:  {$argv[0]}
+HOGE;
+}

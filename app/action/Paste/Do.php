@@ -21,6 +21,12 @@ class Pastit_Form_PasteDo extends Pastit_ActionForm
      *  @var    array   form definition.
      */
     protected $form = array(
+        'title' => array(
+            'name' => 'タイトル',
+            'type' => VAR_TYPE_STRING,
+            'form_type' => FORM_TYPE_TEXT,
+            'required' => false,
+        ),
         'content' => array(
             'name' => '内容',
             'type' => VAR_TYPE_STRING,
@@ -31,28 +37,35 @@ class Pastit_Form_PasteDo extends Pastit_ActionForm
             'name' => 'コンテンツタイプ',
             'type' => VAR_TYPE_STRING,
             'form_type' => FORM_TYPE_SELECT,
-            'option' => array(
-                1 => 'TEXT',
-                2 => 'PHP',
-            ),
+            //'option' => array(),
             'required' => true,
+        ),
+        'token' => array(
+            'type' => VAR_TYPE_STRING,
+            'required' => false,
         ),
     );
 
-    /**
-     *  Form input value convert filter : sample
-     *
-     *  @access protected
-     *  @param  mixed   $value  Form Input Value
-     *  @return mixed           Converted result.
-     */
-    /*
-    protected function _filter_sample($value)
+    public function setFormDef_ViewHelper()
     {
-        //  convert to upper case.
-        return strtoupper($value);
+        require_once 'geshi/geshi.php';
+        $geshi = new GeSHi();
+        $supported = $geshi->get_supported_languages();
+        $option = array();
+        foreach ($supported as $sl) {
+            $option[$sl] = ucfirst($sl);
+        }
+        $sl = asort($option);
+        $ct = $this->getDef('content_type');
+        $ct['option'] = array(
+            // frequent used languages
+            'text' => 'Text',
+            'php' => 'PHP',
+            'diff' => 'Diff',
+            '-' => '------',
+        ) + $option;
+        $this->setDef('content_type', $ct);
     }
-    */
 }
 
 /**
@@ -64,6 +77,8 @@ class Pastit_Form_PasteDo extends Pastit_ActionForm
  */
 class Pastit_Action_PasteDo extends Pastit_ActionClass
 {
+    //protected $login_required = false;
+
     /**
      *  preprocess of paste_do Action.
      *
@@ -75,9 +90,13 @@ class Pastit_Action_PasteDo extends Pastit_ActionClass
     {
         if ($this->af->validate() > 0) {
             // forward to error view (this is sample)
+            if ($this->af->get('token')) {
+                echo "error (form validation)", PHP_EOL;
+                var_dump($this->ae->getMessageList());
+                return false;
+            }
             return 'index';
         }
-        $sample = $this->af->get('sample');
         return null;
     }
 
@@ -89,7 +108,30 @@ class Pastit_Action_PasteDo extends Pastit_ActionClass
      */
     public function perform()
     {
-        return 'paste_do';
+        $pm = $this->backend->getManager('paste');
+
+
+        $post_id = $pm->post(
+            $this->af->get('content'),
+            $this->af->get('content_type'),
+            $this->af->get('title'),
+            $this->af->get('token')
+        );
+
+        if (Ethna::isError($post_id)) {
+            if ($this->af->get('token')) {
+                echo "error: " . $post_id->getMessage();
+                return 'none';
+            }
+            return 'error500';
+        }
+
+        if ($this->af->get('token')) {
+            echo $this->config->get('url') . $post_id;
+            return 'none';
+        }
+
+        return array('redirect', $this->config->get('url') . $post_id);
     }
 }
 
