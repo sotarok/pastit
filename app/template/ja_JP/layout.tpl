@@ -13,9 +13,11 @@
     <li><a href="{{$config.url}}">New Paste</a></li>
     {{if !$app.is_login}}
     <li>{{form action=$config.url|cat:"login_do" name="global_login" id="global_login" ethna_action="login_do"}}{{form_input id="openid_url" name="url" value=$config.app.openid.default_endpoint}}{{form_submit value="Login"}}{{/form}}
+      {{if $config.app.openid.enable_external_service_list}}
       <div class="global_login_services">
       {{openid_form name='openid_url' form='global_login'}}
       </div>
+      {{/if}}
     </li>
     {{else}}
     {{*

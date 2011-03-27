@@ -132,8 +132,11 @@ pre {
   padding: 10px 5px;
 }
 
-#global_login input {
+#global_login input[type="text"] {
   width: 200px;
+  background: #fff url(../images/openid/openid.png) 3px 2px no-repeat;
+  border: solid 1px #ccc;
+  padding: 3px 3px 3px 23px;
 }
 #global_login input[type="submit"] {
   width: auto;
