@@ -32,6 +32,9 @@ class Pastit_PasteManager extends Ethna_AppManager
         $user_id = 0;
         if ($token){
             $user = $this->user->getUserByToken($token);
+            if (Ethna::isError($user)){
+                return Ethna::raiseError('token invalid: ' . $user->getMessage());
+             }
             $user_id = $user['id'];
         }
         elseif ($user = $this->session->get('user')) {

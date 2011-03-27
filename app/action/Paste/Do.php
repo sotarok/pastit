@@ -120,17 +120,16 @@ class Pastit_Action_PasteDo extends Pastit_ActionClass
 
         if (Ethna::isError($post_id)) {
             if ($this->af->get('token')) {
-                echo "error";
-                return false;
+                echo "error: " . $post_id->getMessage();
+                return 'none';
             }
             return 'error500';
         }
 
         if ($this->af->get('token')) {
             echo $this->config->get('url') . $post_id;
-            return false;
+            return 'none';
         }
-                exit;
 
         return array('redirect', $this->config->get('url') . $post_id);
     }

@@ -79,8 +79,11 @@ class Pastit_UserManager extends Ethna_AppManager
             sprintf('SELECT * FROM %s WHERE token = ?', $this->_table),
             $token
         );
+        if (!$ret) {
+            return Ethna::raiseError("user not found");
+        }
         if (Ethna::isError($ret)) {
-            return array();
+            return $ret;
         }
         return $ret;
     }

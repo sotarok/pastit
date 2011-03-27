@@ -7,8 +7,10 @@
 
 <div class="paste_view">
 <div class="paste_side">
+{{if $app.is_login}}
 {{if $app.paste.user_id == $session.user.id}}
 <p><a href="{{$config.url}}edit?id={{$app.paste.id}}">&gt; Edit</a></p>
+{{/if}}
 {{/if}}
 <p>Type: {{$app.paste.content_type}}</p>
 <p>User: {{if $app.user}}{{$app.user.nickname}}{{else}}-{{/if}}</p>
