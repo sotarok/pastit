@@ -23,6 +23,7 @@
     <li><a href="{{$config.url}}my">My Pastes</a></li>
     *}}
     <li><a href="{{$config.url}}setting">Setting</a></li>
+    <li><a href="{{$config.url}}logout">Logout</a></li>
     {{/if}}
     <!--
     -->

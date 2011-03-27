@@ -37,6 +37,10 @@ class Pastit_UrlHandler extends Ethna_UrlHandler
                 'path'          => 'pastit',
                 'path_ext'      => array(),
             ),
+            'logout' => array(
+                'path'          => 'logout',
+                'path_ext'      => array(),
+            ),
             'setting' => array(
                 'path'          => 'setting',
                 'path_ext'      => array(),
