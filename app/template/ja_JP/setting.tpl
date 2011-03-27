@@ -24,6 +24,7 @@ Download: <a href="{{$config.url}}download">pastit</a>
 </p>
 <pre>
 $ wget -O ~/bin/pastit {{$config.url}}pastit
+$ chmod a+x ~/bin/pastit
 $ echo "token={{$app.user.token}}" > ~/.pastit
 </pre>
 
