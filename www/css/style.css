@@ -12,9 +12,19 @@ body
   font-family: Verdana, "ヒラギノ角ゴ Pro W3", "メイリオ";
 }
 
-a { color: #333631; text-decoration: none; }
+a { color: #006eb0; text-decoration: none; }
 a:hover { text-decoration: none; }
 a:active { text-decoration: none; }
+
+#header a { color: #333631; text-decoration: none; }
+#header a:hover { text-decoration: none; }
+#header a:active { text-decoration: none; }
+
+pre {
+  background: #eae8e1;
+  border: solid 1px #ccc;
+  padding: 10px;
+}
 
 #header
 {
@@ -117,6 +127,9 @@ a:active { text-decoration: none; }
 
 
 #global_login {
+  float: left;
+  height: 20px;
+  padding: 10px 5px;
 }
 
 #global_login input {
@@ -124,6 +137,11 @@ a:active { text-decoration: none; }
 }
 #global_login input[type="submit"] {
   width: auto;
+}
+.global_login_services {
+  float: left;
+  height: 20px;
+  padding: 10px 5px;
 }
 
 

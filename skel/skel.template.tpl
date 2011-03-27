@@ -1,3 +1,3 @@
-  <h2>New Template</h2>
-  <p>hello, world!</p>
+<h1>New Template</h1>
+<p>hello, world!</p>
 

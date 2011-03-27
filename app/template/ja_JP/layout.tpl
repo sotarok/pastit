@@ -12,7 +12,11 @@
     <li><a href="{{$config.url}}"><img src="{{$config.url}}images/header_logo.png" alt="Top" /></a></li>
     <li><a href="">New Paste</a></li>
     {{if !$app.is_login}}
-    <li>{{form name="global_login" id="global_login" ethna_action="login_do"}}{{form_input name="url"}}{{form_submit value="Login"}}{{/form}}</li>
+    <li>{{form action=$config.url|cat:"login_do" name="global_login" id="global_login" ethna_action="login_do"}}{{form_input id="openid_url" name="url" value=$config.app.openid.default_endpoint}}{{form_submit value="Login"}}{{/form}}
+      <div class="global_login_services">
+      {{openid_form name='openid_url' form='global_login'}}
+      </div>
+    </li>
     {{else}}
     <li><a href="{{$config.url}}timeline">Timeline</a></li>
     <li><a href="{{$config.url}}my">My Pastes</a></li>

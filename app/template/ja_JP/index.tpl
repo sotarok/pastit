@@ -3,6 +3,9 @@
 <div id="new-paste">
 {{form ethna_action="paste_do" name="paste" id="paste-form"}}
 
+{{include file="errors.tpl"}}
+
+Title <span class="form-caption">(* option)</span>: {{form_input name="title"}}
 {{if count($errors)}}
 <div class="errors">
 <ul>
@@ -12,8 +15,6 @@
 </ul>
 </div>
 {{/if}}
-
-Title <span class="form-caption">(* option)</span>: {{form_input name="title"}}
 {{form_input name="content_type"}}<br />
 {{form_input name="content"}}<br />
 
