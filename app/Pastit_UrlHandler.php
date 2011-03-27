@@ -34,7 +34,7 @@ class Pastit_UrlHandler extends Ethna_UrlHandler
                 ),
             ),
             'download' => array(
-                'path'          => 'pastit',
+                'path'          => 'download',
                 'path_ext'      => array(),
             ),
             'logout' => array(

@@ -56,6 +56,7 @@ pre {
   border-right: solid 1px #ccc;
 }
 
+#navigation li div,
 #navigation li a {
   display: block;
   height: 17px;

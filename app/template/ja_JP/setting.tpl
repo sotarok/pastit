@@ -23,7 +23,7 @@ Command-line tool to post Pastit.
 Download: <a href="{{$config.url}}download">pastit</a>
 </p>
 <pre>
-$ wget -O ~/bin/pastit {{$config.url}}pastit
+$ wget -O ~/bin/pastit {{$config.url}}download
 $ chmod a+x ~/bin/pastit
 $ echo "token={{$app.user.token}}" > ~/.pastit
 </pre>

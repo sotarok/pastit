@@ -25,6 +25,7 @@
     <li><a href="{{$config.url}}my">My Pastes</a></li>
     *}}
     <li><a href="{{$config.url}}setting">Setting</a></li>
+    <li><div>Logged in as {{$session.user.nickname|default:$session.user.identity}}</div></li>
     <li><a href="{{$config.url}}logout">Logout</a></li>
     {{/if}}
     <!--
