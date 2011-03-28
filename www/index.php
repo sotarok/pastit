@@ -1,5 +1,11 @@
 <?php
 
+if (file_exists(__DIR__ . '/.maint')) {
+    header('HTTP/1.1 503 Service Unavailable');
+    echo "this site is under maintenance.";
+    exit;
+}
+
 require_once dirname(__FILE__) . '/../app/Pastit_Controller.php';
 
 /**
