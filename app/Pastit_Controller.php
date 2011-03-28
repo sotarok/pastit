@@ -23,6 +23,8 @@ require_once 'Pastit_ActionClass.php';
 require_once 'Pastit_ActionForm.php';
 require_once 'Pastit_ViewClass.php';
 
+require_once 'Pastit_Define.php';
+
 /**
  *  Pastit application Controller definition.
  *
