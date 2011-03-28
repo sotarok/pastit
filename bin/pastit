@@ -3,6 +3,9 @@
 
 define('PASTIT_CLIENT_VERSION', '0.1.1');
 
+mb_internal_encoding('UTF-8');
+mb_detect_order('UTF-8,EUC-JP,eucJp-win,SJIS');
+
 if (!ini_get('register_argc_argv')) {
     echo "please enable register_argc_argv of your php.ini.", PHP_EOL;
     usage();
@@ -46,6 +49,12 @@ else {
     while ($l = fgets(STDIN)) {
         $content .= $l;
     }
+}
+
+// encoding detection
+$encoding = mb_detect_encoding($content);
+if ($encoding != 'UTF-8') {
+    $content = mb_convert_encoding($content, 'UTF-8', $encoding);
 }
 
 if (!$type) {
