@@ -1,6 +1,8 @@
 #!/usr/bin/env php
 <?php
 
+define('PASTIT_CLIENT_VERSION', '0.1.1');
+
 if (!ini_get('register_argc_argv')) {
     echo "please enable register_argc_argv of your php.ini.", PHP_EOL;
     usage();
@@ -63,6 +65,7 @@ $data = http_build_query(
         'content_type' => $type,
         'title' => $title,
         'token' => $token,
+        'version' => PASTIT_CLIENT_VERSION,
     )
 );
 $context_option = array(
