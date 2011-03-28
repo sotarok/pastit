@@ -191,5 +191,17 @@ class Pastit_Controller extends Ethna_Controller
     protected function _setDefaultTemplateEngine($renderer)
     {
     }
+
+    protected function _createFilterChain()
+    {
+        if (!$this->config->get('debug')) {
+            $this->filter = array_diff(
+                $this->filter,
+                array(
+                    'Debugtoolbar',
+                )
+            );
+        }
+    }
 }
 
