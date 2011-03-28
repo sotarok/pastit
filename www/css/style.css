@@ -27,6 +27,12 @@ pre {
   padding: 10px;
 }
 
+pre.inline-pre {
+  padding: 3px;
+  display: inline;
+  border: dashed 1px #999;
+}
+
 #header
 {
 
