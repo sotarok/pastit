@@ -2,7 +2,7 @@
 
 if (file_exists(__DIR__ . '/.maint')) {
     header('HTTP/1.1 503 Service Unavailable');
-    echo "this site is under maintenance.";
+    echo "This site is under maintenance.";
     exit;
 }
 
