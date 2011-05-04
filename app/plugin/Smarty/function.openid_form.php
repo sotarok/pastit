@@ -33,7 +33,7 @@ function smarty_function_openid_form ($param, &$smarty)
         }
 
         $html .= sprintf(
-            '<img name="%s" src="%simages/openid/%s" %s class="login-openid"> ',
+            '<img name="%s" src="%simages/openid/%s.png" %s class="login-openid"> ',
             $form_id, $url, $k, $add
         );
 
