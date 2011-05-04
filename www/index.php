@@ -1,4 +1,7 @@
 <?php
+if (!isset($_SERVER['PATH_INFO'])) {
+    $_SERVER['PATH_INFO'] = $_SERVER['REQUEST_URI'];
+}
 
 if (file_exists(__DIR__ . '/.maint')) {
     header('HTTP/1.1 503 Service Unavailable');
