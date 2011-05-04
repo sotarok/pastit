@@ -47,6 +47,7 @@ class Pastit_View_PasteView extends Pastit_ViewClass
             return;
         }
 
+        //error_log(var_export($paste, true));
         list($content, $type) = $pm->getSyntaxHighlightedContent($paste['content'], $paste['content_type']);
         $paste['content_type'] = $type;
         $this->af->setApp('paste', $paste);
