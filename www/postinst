@@ -1,0 +1,5 @@
+#!/usr/bin/php
+<?php
+
+// task
+echo 'end of task', PHP_EOL;
