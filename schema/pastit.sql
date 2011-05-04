@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 5.1.49, for debian-linux-gnu (x86_64)
+-- MySQL dump 10.13  Distrib 5.1.50-MariaDB, for pc-linux-gnu (i686)
 --
 -- Host: localhost    Database: pastit
 -- ------------------------------------------------------
--- Server version	5.1.49-3
+-- Server version	5.1.49-0.dotdeb.0
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -14,14 +14,6 @@
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
-
---
--- Current Database: `pastit`
---
-
-CREATE DATABASE /*!32312 IF NOT EXISTS*/ `pastit` /*!40100 DEFAULT CHARACTER SET latin1 */;
-
-USE `pastit`;
 
 --
 -- Table structure for table `pastit_paste`
@@ -36,7 +28,7 @@ CREATE TABLE `pastit_paste` (
   `session_id` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `title` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `content_type` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `content` text COLLATE utf8_unicode_ci NOT NULL,
+  `content` longtext COLLATE utf8_unicode_ci NOT NULL,
   `modified` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP,
   `created` datetime NOT NULL,
   `deleted` tinyint(1) NOT NULL DEFAULT '0',
@@ -73,4 +65,4 @@ CREATE TABLE `pastit_users` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2011-03-28  3:31:23
+-- Dump completed on 2011-05-04 16:00:39
