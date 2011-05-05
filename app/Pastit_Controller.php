@@ -204,6 +204,7 @@ class Pastit_Controller extends Ethna_Controller
                 )
             );
         }
+        parent::_createFilterChain();
     }
 }
 
