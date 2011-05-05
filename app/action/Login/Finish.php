@@ -50,11 +50,11 @@ class Pastit_Action_LoginFinish extends Pastit_ActionClass
      */
     public function prepare()
     {
-        /**
         if ($this->af->validate() > 0) {
             // forward to error view (this is sample)
-            return 'error';
+            return array('redirect', '/');
         }
+        /**
         $sample = $this->af->get('sample');
         */
         return null;
