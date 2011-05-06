@@ -1,6 +1,11 @@
 <?php
 if (!isset($_SERVER['PATH_INFO'])) {
-    $_SERVER['PATH_INFO'] = $_SERVER['REQUEST_URI'];
+    $request_uri = isset($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : '';
+    if (!empty($request_uri)) {
+        $parsed_uri = parse_url($request_uri);
+        $request_uri = isset($parsed_uri['path']) ? $parsed_uri['path'] : '';
+    }
+    $_SERVER['PATH_INFO'] = $request_uri;
 }
 
 if (file_exists(__DIR__ . '/.maint')) {
