@@ -1,7 +1,7 @@
 #!/usr/bin/env php
 <?php
 
-define('PASTIT_CLIENT_VERSION', '0.1.1');
+define('PASTIT_CLIENT_VERSION', '0.1.2');
 
 mb_internal_encoding('UTF-8');
 mb_detect_order('UTF-8,EUC-JP,eucJp-win,SJIS');
@@ -43,7 +43,7 @@ if (file_exists($file)) {
     $content = file_get_contents($file);
     $pi = pathinfo($file);
     $title = $pi['basename'];
-    $type = $pi['extension'];
+    $type = isset($pi['extension']) ? $pi['extension'] : 'none';
 }
 else {
     while ($l = fgets(STDIN)) {
