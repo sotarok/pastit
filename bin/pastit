@@ -1,7 +1,7 @@
 #!/usr/bin/env php
 <?php
 
-define('PASTIT_CLIENT_VERSION', '0.1.2');
+define('PASTIT_CLIENT_VERSION', '0.1.3');
 
 mb_internal_encoding('UTF-8');
 mb_detect_order('UTF-8,EUC-JP,eucJp-win,SJIS');
@@ -43,7 +43,7 @@ if (file_exists($file)) {
     $content = file_get_contents($file);
     $pi = pathinfo($file);
     $title = $pi['basename'];
-    $type = isset($pi['extension']) ? $pi['extension'] : '';
+    $extension = isset($pi['extension']) ? $pi['extension'] : '';
 }
 else {
     while ($l = fgets(STDIN)) {
@@ -57,9 +57,15 @@ if ($encoding != 'UTF-8') {
     $content = mb_convert_encoding($content, 'UTF-8', $encoding);
 }
 
-if (!$type) {
-    $v = getopt('t:');
-    $type = isset($v['t'])? $v['t'] : "__pastit_type_none__";
+$v = getopt('t:');
+if (isset($v['t'])) {
+    $type = $v['t'];
+}
+elseif (!empty($extension)) {
+    $type = $extension;
+}
+else {
+    $type = "__pastit_type_none__";
 }
 
 if (empty($content)) {
