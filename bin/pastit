@@ -43,7 +43,7 @@ if (file_exists($file)) {
     $content = file_get_contents($file);
     $pi = pathinfo($file);
     $title = $pi['basename'];
-    $type = isset($pi['extension']) ? $pi['extension'] : 'none';
+    $type = isset($pi['extension']) ? $pi['extension'] : '';
 }
 else {
     while ($l = fgets(STDIN)) {
