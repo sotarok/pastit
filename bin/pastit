@@ -65,16 +65,34 @@ $data = http_build_query(
         'token' => $token,
     )
 );
-$context_option = array(
-    'http' => array(
-        'method'  => 'POST',
-        'header'  => 'Content-type: application/x-www-form-urlencoded',
-        'content' => $data
-    )
-);
 
-$context  = stream_context_create($context_option);
-$result = file_get_contents('___url___paste_do', false, $context);
+$socks_proxy = isset($conf['socks_proxy'])? $conf['socks_proxy'] : false;
+
+$url = '___url___paste_do';
+if ($socks_proxy) {
+    $curl = curl_init();
+    curl_setopt($curl, CURLOPT_URL, $url);
+    curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+    curl_setopt ($curl, CURLOPT_POST, true);
+    curl_setopt ($curl, CURLOPT_POSTFIELDS, $data);
+
+    curl_setopt($curl, CURLOPT_PROXY, $socks_proxy);
+    curl_setopt($curl, CURLOPT_PROXYTYPE, 7); // CURLPROXY_SOCKS5_HOSTNAME
+    $result = curl_exec($curl);
+    $r = curl_getinfo($curl);
+} else {
+    $context_option = array(
+        'http' => array(
+            'method'  => 'POST',
+            'header'  => 'Content-type: application/x-www-form-urlencoded',
+            'content' => $data
+        )
+    );
+
+    $context = stream_context_create($context_option);
+    $result = file_get_contents($url, false, $context);
+}
+
 
 echo "Posted: " . $result;
 echo PHP_EOL;
