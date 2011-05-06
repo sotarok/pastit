@@ -1,7 +1,7 @@
 #!/usr/bin/env php
 <?php
 
-define('PASTIT_CLIENT_VERSION', '0.1.3');
+define('PASTIT_CLIENT_VERSION', '0.1.4');
 
 mb_internal_encoding('UTF-8');
 mb_detect_order('UTF-8,EUC-JP,eucJp-win,SJIS');
@@ -88,6 +88,10 @@ $socks_proxy = isset($conf['socks_proxy'])? $conf['socks_proxy'] : false;
 
 $url = '___url___paste_do';
 if ($socks_proxy) {
+    if (!extension_loaded('curl')) {
+        echo 'error: use socket_proxy required curl extension.', PHP_EOL;
+        exit(255);
+    }
     $curl = curl_init();
     curl_setopt($curl, CURLOPT_URL, $url);
     curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
