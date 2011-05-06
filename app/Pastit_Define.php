@@ -3,4 +3,4 @@
  *
  */
 
-define('PASTIT_CLIENT_VERSION_CHECK', '0.1.1');
+define('PASTIT_CLIENT_VERSION_CHECK', '0.1.2');
