@@ -27,6 +27,10 @@ class Pastit_Form_Index extends Pastit_ActionForm
             'type' => VAR_TYPE_INT,
             'required' => false,
         ),
+        'format' => array(
+            'type' => VAR_TYPE_STRING,
+            'required' => false,
+        ),
     );
 
     /**

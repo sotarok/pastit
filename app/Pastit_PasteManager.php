@@ -73,6 +73,14 @@ class Pastit_PasteManager extends Ethna_AppManager
 
     public function getSyntaxHighlightedContent($content, $type)
     {
+        //$content = ;
+        //return array('<pre>' . $content . '</pre>', 'none');
+        //error_log("content len=" . strlen($content));
+        // サイズがでかすぎたら syntax highlight ナシ
+        if (strlen($content) > 1 << 15) {
+            error_log($content);
+            return array('<pre>' . htmlspecialchars($content, ENT_QUOTES) . '</pre>', 'none');
+        }
         if ($type == '__pastit_type_none__') {
             $type = 'none';
 

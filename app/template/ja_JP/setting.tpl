@@ -22,6 +22,7 @@ Command-line tool to post Pastit.
 <p>
 Download: <a href="{{$config.url}}download">pastit</a>
 </p>
+Add <pre class="inline-pre">~/bin</pre> directory to your PATH. (or it's alright that install to <pre class="inline-pre">/usr/local/bin</pre> etc.)
 <pre>
 $ wget -O ~/bin/pastit {{$config.url}}download
 $ chmod a+x ~/bin/pastit

@@ -1,0 +1,21 @@
+#!/usr/bin/php
+<?php
+
+define('DOTCLOUD_HOME', '/home/dotcloud/');
+
+$files = array(
+    'pastit-ini.php'     => 'code/config/pastit-ini.php',
+    'pastit-app-ini.php' => 'code/config/pastit-app-ini.php',
+);
+
+foreach ($files as $origin_file => $dest_file) {
+    if (!file_exists(DOTCLOUD_HOME . $dest_file)
+        && file_exists(DOTCLOUD_HOME . $origin_file))
+    {
+        echo DOTCLOUD_HOME . $origin_file, " -> ", DOTCLOUD_HOME . $dest_file, PHP_EOL;
+        copy(DOTCLOUD_HOME . $origin_file, DOTCLOUD_HOME . $dest_file);
+    }
+}
+
+// task
+echo 'end of task', PHP_EOL;

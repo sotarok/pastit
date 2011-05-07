@@ -25,6 +25,10 @@ class Pastit_Form_PasteView extends Pastit_ActionForm
             'type' => VAR_TYPE_INT,
             'required' => true,
         ),
+        'format' => array(
+            'type' => VAR_TYPE_STRING,
+            'required' => false,
+        ),
     );
 
     /**

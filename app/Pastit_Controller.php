@@ -23,6 +23,8 @@ require_once 'Pastit_ActionClass.php';
 require_once 'Pastit_ActionForm.php';
 require_once 'Pastit_ViewClass.php';
 
+require_once 'Pastit_Define.php';
+
 /**
  *  Pastit application Controller definition.
  *
@@ -190,6 +192,19 @@ class Pastit_Controller extends Ethna_Controller
      */
     protected function _setDefaultTemplateEngine($renderer)
     {
+    }
+
+    protected function _createFilterChain()
+    {
+        if (!$this->config->get('debug')) {
+            $this->filter = array_diff(
+                $this->filter,
+                array(
+                    'Debugtoolbar',
+                )
+            );
+        }
+        parent::_createFilterChain();
     }
 }
 

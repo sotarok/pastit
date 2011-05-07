@@ -44,6 +44,10 @@ class Pastit_Form_PasteDo extends Pastit_ActionForm
             'type' => VAR_TYPE_STRING,
             'required' => false,
         ),
+        'version' => array(
+            'type' => VAR_TYPE_STRING,
+            'required' => false,
+        ),
     );
 
     public function setFormDef_ViewHelper()
@@ -127,6 +131,10 @@ class Pastit_Action_PasteDo extends Pastit_ActionClass
         }
 
         if ($this->af->get('token')) {
+            if ($this->af->get('version') != PASTIT_CLIENT_VERSION_CHECK) {
+                echo "new pastit client version avaiable: check " . $this->config->get('url') . "setting", PHP_EOL;
+            }
+
             echo $this->config->get('url') . $post_id;
             return 'none';
         }
