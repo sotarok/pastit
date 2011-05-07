@@ -1,0 +1,15 @@
+0.2.0
+-----------
+
+* nginx (and settings for DotCloud) supported
+* client socket_proxy supported (thanks @ku #11)
+
+0.1.1
+-----------
+
+* Some fixes
+
+0.1.0
+-----------
+
+* Initial version
