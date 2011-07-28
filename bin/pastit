@@ -119,6 +119,12 @@ if ($socks_proxy) {
 echo $result;
 echo PHP_EOL;
 
+if (defined('PHP_OS') && PHP_OS == 'Darwin' && is_executable('/usr/bin/pbcopy')) {
+    $pp = popen('/usr/bin/pbcopy', 'w');
+    fwrite($pp, $result, 1000);
+    pclose($pp);
+}
+
 function usage()
 {
     echo <<<HOGE
